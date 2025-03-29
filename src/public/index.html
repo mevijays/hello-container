@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Container Environment Detector</title>
+    <!-- Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #f8f9fa;
+        }
+        
+        .main-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .logo-container {
+            text-align: center;
+            padding: 2rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .logo-container:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo {
+            max-width: 180px;
+            height: auto;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        }
+        
+        .info-container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+            margin: 1rem 0 3rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .info-container:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            transform: translateY(-5px);
+        }
+        
+        .card {
+            border: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .card-header {
+            background-color: rgba(0, 0, 0, 0.03);
+            font-weight: 600;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        .footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: auto;
+        }
+        
+        .footer a {
+            color: #17a2b8;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            color: #7fdbff;
+            text-decoration: underline;
+        }
+        
+        .environment-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .environment-title:after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            bottom: -10px;
+            left: 20%;
+            background: linear-gradient(to right, #17a2b8, #6610f2);
+            border-radius: 2px;
+        }
+        
+        .spinner-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 150px;
+        }
+        
+        .deployment-type {
+            background: #17a2b8;
+            color: white;
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .kubernetes-color { background-color: #326CE5; }
+        .docker-color { background-color: #2496ED; }
+        .local-color { background-color: #68A063; }
+        
+        .alert-container {
+            margin-top: 2rem;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .info-icon {
+            margin-right: 8px;
+            width: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-cube mr-2"></i>Container Environment Detector
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/debug"><i class="fas fa-bug mr-1"></i>Debug</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/api/deployment-info" target="_blank">
+                            <i class="fas fa-code mr-1"></i>API
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container main-container">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-8">
+                <div class="logo-container fade-in">
+                    <img id="environment-logo" class="logo" src="/img/logo.svg" alt="Environment Logo">
+                </div>
+                
+                <div class="info-container fade-in">
+                    <div id="spinner-container" class="spinner-container">
+                        <div class="spinner-border text-info" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                    
+                    <div id="content-container" style="display: none;">
+                        <h2 id="environment-title" class="text-center environment-title">
+                            Detecting Environment...
+                        </h2>
+                        
+                        <div id="environment-badge" class="text-center"></div>
+                        
+                        <div id="deployment-info"></div>
+                    </div>
+                    
+                    <div id="error-container" class="alert-container" style="display: none;">
+                        <div class="alert alert-danger" role="alert">
+                            <i class="fas fa-exclamation-triangle mr-2"></i>
+                            <span id="error-message">An error occurred</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="container">
+            <p class="mb-1">
+                <i class="fas fa-code mr-2"></i>mevijay.dev welcome page
+            </p>
+            <p class="small text-muted mb-0">
+                Built with <i class="fas fa-heart text-danger"></i> using Node.js and Bootstrap 4
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap & dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+    
+    <!-- Application script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const spinnerContainer = document.getElementById('spinner-container');
+            const contentContainer = document.getElementById('content-container');
+            const errorContainer = document.getElementById('error-container');
+            const errorMessage = document.getElementById('error-message');
+            const logoElement = document.getElementById('environment-logo');
+            const titleElement = document.getElementById('environment-title');
+            const badgeElement = document.getElementById('environment-badge');
+            const infoContainer = document.getElementById('deployment-info');
+            
+            // Function to detect the deployment environment
+            function detectEnvironment() {
+                return fetch('/api/deployment-info')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Deployment info:', data);
+                        
+                        // Hide spinner and show content
+                        spinnerContainer.style.display = 'none';
+                        contentContainer.style.display = 'block';
+                        
+                        // Update UI based on environment
+                        if (data.environment === 'kubernetes') {
+                            // Kubernetes environment
+                            logoElement.src = '/img/kubernetes-logo.png';
+                            titleElement.textContent = 'Hello Kubernetes!';
+                            badgeElement.innerHTML = '<span class="deployment-type kubernetes-color"><i class="fas fa-dharmachakra mr-1"></i>Kubernetes</span>';
+                            
+                            infoContainer.innerHTML = `
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <i class="fas fa-server info-icon"></i>Pod Name
+                                            </div>
+                                            <div class="card-body">
+                                                <p class="card-text">${data.podName || 'Not available'}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <i class="fas fa-rocket info-icon"></i>Deployment
+                                            </div>
+                                            <div class="card-body">
+                                                <p class="card-text">${data.deploymentName || 'Not available'}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <i class="fas fa-project-diagram info-icon"></i>Namespace
+                                            </div>
+                                            <div class="card-body">
+                                                <p class="card-text">${data.namespace || 'Not available'}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        } else if (data.environment === 'docker') {
+                            // Docker environment
+                            logoElement.src = '/img/docker-logo.png';
+                            titleElement.textContent = 'Hello Docker!';
+                            badgeElement.innerHTML = '<span class="deployment-type docker-color"><i class="fab fa-docker mr-1"></i>Docker</span>';
+                            
+                            infoContainer.innerHTML = `
+                                <div class="row justify-content-center">
+                                    <div class="col-md-8">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <i class="fas fa-cube info-icon"></i>Container Name
+                                            </div>
+                                            <div class="card-body">
+                                                <p class="card-text">${data.containerName || 'Not available'}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        } else {
+                            // Local environment or unknown
+                            logoElement.src = '/img/logo.svg';
+                            titleElement.textContent = 'Hello Node.js!';
+                            badgeElement.innerHTML = '<span class="deployment-type local-color"><i class="fas fa-laptop-code mr-1"></i>Local</span>';
+                            
+                            infoContainer.innerHTML = `
+                                <div class="row justify-content-center">
+                                    <div class="col-md-8">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <i class="fas fa-desktop info-icon"></i>Hostname
+                                            </div>
+                                            <div class="card-body">
+                                                <p class="card-text">${data.hostname || 'Not available'}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        }
+                        
+                        return data;
+                    })
+                    .catch(error => {
+                        console.error('Error detecting environment:', error);
+                        
+                        // Hide spinner and show error
+                        spinnerContainer.style.display = 'none';
+                        errorContainer.style.display = 'block';
+                        errorMessage.textContent = `Failed to fetch deployment information: ${error.message}`;
+                    });
+            }
+            
+            // Call the function to detect environment and update UI
+            detectEnvironment();
+        });
+    </script>
+</body>
+</html>

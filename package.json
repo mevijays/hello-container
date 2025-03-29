@@ -1,0 +1,33 @@
+{
+  "name": "nodejs-container-app",
+  "version": "1.0.0",
+  "description": "A Node.js application that detects if it's running in Docker or Kubernetes",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "jest --coverage",
+    "dev": "nodemon src/server.js"
+  },
+  "keywords": [
+    "nodejs",
+    "docker",
+    "kubernetes",
+    "container"
+  ],
+  "author": "mevijay.dev",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "nodemon": "^3.1.9",
+    "supertest": "^6.3.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  }
+}
