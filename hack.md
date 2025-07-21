@@ -299,4 +299,9 @@ This Azure-only solution harnesses the full suite of Azure AI capabilities to de
 
 You can extend this baseline with advanced features like voice biometrics, gamification for engagement, and analytics dashboards for monitoring user trends. This blueprint provides a clear and practical path to deliver a world-class AI-powered financial assistant for Deutsche Bank customers.
 
-Sources
+
+Solution configuration Links: 
+- [API managment](az-api-mgmt.md)
+- [Azure functions- api backend](az-function.md)
+- [OpenAI LLM setup and config](az-openai.md)
+- [Speech engine Azure cognitive setup config](cognitive.md)
