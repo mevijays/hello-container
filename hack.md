@@ -136,31 +136,31 @@ synthesizer.speak_text_async(translation)
 
 ## 10. References for Implementation
 
-- GCP Speech: Over 100 languages supported with real-time STT/TTS and language auto-detection[3][6][2].
-- Azure Speech and Translator: End-to-end multi-language speech, translation, and TTS in real time[1][5][8][4][7].
-- Use LLMs (Gemini, GPT-4, etc.) designed for multilingual interaction and best-in-class AI reasoning[2][9][8].
-- AI-first conversational UI/UX guidance for enterprises expanding into multilingual digital banking[10].
+- GCP Speech: Over 100 languages supported with real-time STT/TTS and language auto-detection[3][6][2].  
+- Azure Speech and Translator: End-to-end multi-language speech, translation, and TTS in real time[1][5][8][4][7].  
+- Use LLMs (Gemini, GPT-4, etc.) designed for multilingual interaction and best-in-class AI reasoning[2][9][8].  
+- AI-first conversational UI/UX guidance for enterprises expanding into multilingual digital banking[10].  
 
 With these enhancements, your solution will deliver a seamless, AI-powered, truly multilingual conversational banking experience—inclusive, highly interactive, and globally accessible[2][1][3][6][10][8].
 
-Sources
-[1] Speech translation overview - Azure AI services | Microsoft Learn https://learn.microsoft.com/en-us/azure/ai-services/speech-service/speech-translation
-[2] Build multilingual chatbots with Gemini, Gemma, and MCP https://cloud.google.com/blog/products/ai-machine-learning/build-multilingual-chatbots-with-gemini-gemma-and-mcp
-[3] Speech-to-Text AI: speech recognition and transcription https://cloud.google.com/speech-to-text
-[4] Google Cloud to Azure services comparison - Learn Microsoft https://learn.microsoft.com/en-us/azure/architecture/gcp-professional/services
-[5] Azure AI Speech https://azure.microsoft.com/en-us/products/ai-services/ai-speech
-[6] Cloud Translation https://cloud.google.com/translate
-[7] Speech Translation (Artificial Intelligence, Machine Learning) https://k21academy.com/microsoft-azure/dp-100/speech-translation-artificial-intelligence-machine-learning/
-[8] Multilingual Chatbot with Azure AI Studio, Phi-3 Mini, GPT- ... https://techcommunity.microsoft.com/blog/azure-ai-services-blog/multilingual-chatbot-with-azure-ai-studio-phi-3-mini-gpt-4-and-azure-ai-translat/4139513
-[9] Multilingual AI in Text and Voice - Sahaj Software https://www.sahaj.ai/multilingual-ai-in-text-and-voice/
-[10] Multilingual Chatbots and the Future of Conversational AI https://languageio.com/resources/blogs/multilingual-chatbot/
-[11] Multilingual and Code-Switched Automatic Speech Recognition with ... https://developer.nvidia.com/blog/multilingual-and-code-switched-automatic-speech-recognition-with-nvidia-nemo/
-[12] Introducing speech-to-text, text-to-speech, and more for ... - Meta AI https://ai.meta.com/blog/multilingual-model-speech-recognition/
-[13] The Best Multilingual AI Speech Models - Speechify https://speechify.com/blog/best-multilingual-ai-speech-model/
-[14] End-to-End Multilingual Speech Recognition and Synthesis with Bytes https://research.google/pubs/bytes-are-all-you-need-end-to-end-multilingual-speech-recognition-and-synthesis-with-bytes/
-[15] Artificial Intelligence Service for Conversational Chatbots https://www.alibabacloud.com/en/solutions/ai-chatbots?_p_lc=1
-[16] Compare AWS and Azure services to Google Cloud | Get started https://cloud.google.com/docs/get-started/aws-azure-gcp-service-comparison
-[17] AI Chat Builder - Amazon Lex - AWS https://aws.amazon.com/lex/
-[18] AI - VANI https://cloud.gov.in/user/services_ai_vani.php
-[19] Cloud-Based AI Services from Azure, AWS and GCP: An Overview https://www.opensourceforu.com/2024/09/cloud-based-ai-services-from-azure-aws-and-gcp-an-overview/
-[20] Chatbot Software Empowered With Artificial Intelligence https://crisp.chat/en/chatbot/
+Sources  
+[1] Speech translation overview - Azure AI services | Microsoft Learn https://learn.microsoft.com/en-us/azure/ai-services/speech-service/speech-translation  
+[2] Build multilingual chatbots with Gemini, Gemma, and MCP https://cloud.google.com/blog/products/ai-machine-learning/build-multilingual-chatbots-with-gemini-gemma-and-mcp  
+[3] Speech-to-Text AI: speech recognition and transcription https://cloud.google.com/speech-to-text  
+[4] Google Cloud to Azure services comparison - Learn Microsoft https://learn.microsoft.com/en-us/azure/architecture/gcp-professional/services  
+[5] Azure AI Speech https://azure.microsoft.com/en-us/products/ai-services/ai-speech  
+[6] Cloud Translation https://cloud.google.com/translate  
+[7] Speech Translation (Artificial Intelligence, Machine Learning) https://k21academy.com/microsoft-azure/dp-100/speech-translation-artificial-intelligence-machine-learning/  
+[8] Multilingual Chatbot with Azure AI Studio, Phi-3 Mini, GPT- ... https://techcommunity.microsoft.com/blog/azure-ai-services-blog/multilingual-chatbot-with-azure-ai-studio-phi-3-mini-gpt-4-and-azure-ai-translat/4139513  
+[9] Multilingual AI in Text and Voice - Sahaj Software https://www.sahaj.ai/multilingual-ai-in-text-and-voice/  
+[10] Multilingual Chatbots and the Future of Conversational AI https://languageio.com/resources/blogs/multilingual-chatbot/  
+[11] Multilingual and Code-Switched Automatic Speech Recognition with ... https://developer.nvidia.com/blog/multilingual-and-code-switched-automatic-speech-recognition-with-nvidia-nemo/  
+[12] Introducing speech-to-text, text-to-speech, and more for ... - Meta AI https://ai.meta.com/blog/multilingual-model-speech-recognition/  
+[13] The Best Multilingual AI Speech Models - Speechify https://speechify.com/blog/best-multilingual-ai-speech-model/  
+[14] End-to-End Multilingual Speech Recognition and Synthesis with Bytes https://research.google/pubs/bytes-are-all-you-need-end-to-end-multilingual-speech-recognition-and-synthesis-with-bytes/  
+[15] Artificial Intelligence Service for Conversational Chatbots https://www.alibabacloud.com/en/solutions/ai-chatbots?_p_lc=1  
+[16] Compare AWS and Azure services to Google Cloud | Get started https://cloud.google.com/docs/get-started/aws-azure-gcp-service-comparison  
+[17] AI Chat Builder - Amazon Lex - AWS https://aws.amazon.com/lex/  
+[18] AI - VANI https://cloud.gov.in/user/services_ai_vani.php  
+[19] Cloud-Based AI Services from Azure, AWS and GCP: An Overview https://www.opensourceforu.com/2024/09/cloud-based-ai-services-from-azure-aws-and-gcp-an-overview/  
+[20] Chatbot Software Empowered With Artificial Intelligence https://crisp.chat/en/chatbot/  
